@@ -28,12 +28,34 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="alternate icon" href="favicon.ico" />
 
+  <!-- Локальные шрифты (без внешнего CDN) с preload для быстрой отрисовки -->
+  <link rel="preload" href="fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/inter-400-cyrillic.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- JSON-LD структурированные данные (Person schema) для расширенных сниппетов Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Максим Лубнин",
+    "url": "https://maksimlubnin.ru",
+    "jobTitle": "Business Analyst / Operations Lead",
+    "description": "Операционный лидер: внедрение процессов, KPI, запуск заведений с нуля.",
+    "email": "mailto:lubnin.bartender@gmail.com",
+    "telephone": "+7-999-623-49-14",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Уфа",
+      "addressCountry": "RU"
+    },
+    "knowsAbout": ["Business Analysis", "Внедрение процессов", "Project Management", "HoReCa", "FoodTech"]
+  }
+  </script>
 </head>
 <body>
+
+  <a href="#main-content" class="skip-link">Перейти к содержанию</a>
 
   <!-- ══════════════════════════════════════════
        NAV
@@ -47,6 +69,7 @@
           <li><a href="#portfolio">Кейсы</a></li>
           <li><a href="#skills">Навыки</a></li>
           <li><a href="#video">Видео</a></li>
+          <li><a href="#faq">FAQ</a></li>
           <li><a href="#contact" class="nav__cta">Связаться</a></li>
         </ul>
       </nav>
@@ -64,12 +87,13 @@
         <li><a href="#portfolio">Кейсы</a></li>
         <li><a href="#skills">Навыки</a></li>
         <li><a href="#video">Видео</a></li>
+        <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact">Связаться</a></li>
       </ul>
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
 
     <!-- ══════════════════════════════════════════
          HERO
@@ -234,6 +258,9 @@
                 </table>
               </div>
             </details>
+            <div class="case__cta">
+              <a href="#contact" class="btn btn--ghost btn--sm">Обсудить похожую задачу</a>
+            </div>
           </article>
 
           <!-- CASE 02 -->
@@ -269,6 +296,9 @@
             <div class="case__insight">
               <p>Проект сопоставим с IT-внедрением: Stakeholders, зависимости, критерии готовности, риски, обучение пользователей, момент Go-Live и поддержка после старта.</p>
             </div>
+            <div class="case__cta">
+              <a href="#contact" class="btn btn--ghost btn--sm">Обсудить похожую задачу</a>
+            </div>
           </article>
 
           <!-- CASE 03 -->
@@ -298,6 +328,9 @@
                 <span class="result__lbl">единый стандарт обучения</span>
               </div>
             </div>
+            <div class="case__cta">
+              <a href="#contact" class="btn btn--ghost btn--sm">Обсудить похожую задачу</a>
+            </div>
           </article>
 
           <!-- CASE 04 -->
@@ -322,15 +355,23 @@
             <div class="case__insight">
               <p>Кейс показывает подтверждённый опыт запуска нового бизнес-направления с операционной, командной и коммерческой составляющими.</p>
             </div>
+            <div class="case__cta">
+              <a href="#contact" class="btn btn--ghost btn--sm">Обсудить похожую задачу</a>
+            </div>
           </article>
 
+        </div>
+
+        <div class="portfolio__cta">
+          <p>Похожая задача в вашей команде? Обсудим, как решить её через процессы и требования.</p>
+          <a href="#contact" class="btn btn--primary">Обсудить задачу</a>
         </div>
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════
+    <!-- ═══════════════════════════════════════════════
          SKILLS
-    ══════════════════════════════════════════ -->
+    ═══════════════════════════════════════════════ -->
     <section class="section skills" id="skills" aria-labelledby="skills-heading">
       <div class="container">
         <div class="section-label">03 · Компетенции</div>
@@ -452,12 +493,60 @@
       </div>
     </section>
 
-    <!-- ══════════════════════════════════════════
+    <!-- ═══════════════════════════════════════════════
+         FAQ
+    ═══════════════════════════════════════════════ -->
+    <section class="section faq" id="faq" aria-labelledby="faq-heading">
+      <div class="container">
+        <div class="section-label">05 · Частые вопросы</div>
+        <h2 id="faq-heading" class="section-title">Отвечаю честно</h2>
+        <p class="section-sub">То, что обычно спрашивают на собеседовании — сразу, без обтекаемых формулировок</p>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Почему нет коммерческого опыта именно в роли IT Business Analyst?</summary>
+            <div class="faq-item__body">
+              <p>Потому что его действительно нет — я честно говорю об этом с первого экрана сайта. Моя база — реальная операционная практика в HoReCa: запуск заведений с нуля, стандартизация закупок, KPI, управление командами до 100+ человек. BA-инструменты (BRD, User Story, Acceptance Criteria) я использую, чтобы формализовать и упаковать этот опыт в понятный для бизнеса формат. Кейсы на сайте показывают именно этот процесс.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Какой стек инструментов вы используете?</summary>
+            <div class="faq-item__body">
+              <p>Для документации требований — BRD, User Story, Acceptance Criteria в табличном виде. Для процессов — блок-схемы и логика "отклонение → участники → правила → контроль KPI". Из софта — таблицы (Excel/Google Sheets) для расчётов и трекинга, Miro/аналоги для схем процессов. Глубокого опыта с Jira, Confluence или BPMN-нотацией в проектах пока не было, готов осваивать под конкретную задачу команды.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Готовы ли вы к переезду или удалённой работе?</summary>
+            <div class="faq-item__body">
+              <p>Открыт к обсуждению обоих вариантов — зависит от конкретной роли и условий. Обсудим на созвоне.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Почему стоит рассмотреть вас, а не кандидата с профильным BA-опытом?</summary>
+            <div class="faq-item__body">
+              <p>Если нужен BA с готовым портфолио проектов в IT — это не про меня. Если нужен человек, который понимает операционные процессы бизнеса на практике (а не только в теории), умеет системно раскладывать проблему на требования и довести изменение до результата — это ближе к делу. Кейсы на сайте показывают именно такие ситуации: реальные проблемы, реальные решения, оформленные по BA-стандарту.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Сколько времени нужно на выход на позицию?</summary>
+            <div class="faq-item__body">
+              <p>Стандартный срок для смены работы — 2-4 недели с момента оффера, обсуждается индивидуально.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
          CONTACT
-    ══════════════════════════════════════════ -->
+    ═══════════════════════════════════════════════ -->
     <section class="section contact" id="contact" aria-labelledby="contact-heading">
       <div class="container">
-        <div class="section-label">05 · Контакты</div>
+        <div class="section-label">06 · Контакты</div>
         <h2 id="contact-heading" class="section-title">Готов к задачам на стыке<br/>процессов и результата</h2>
         <p class="section-sub">Интересны роли, где нужно понять работу бизнеса, структурировать изменения и довести решение до работающего результата</p>
 

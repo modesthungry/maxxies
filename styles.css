@@ -1,4 +1,40 @@
 /* ═══════════════════════════════════════════════════════
+   LOCAL FONTS (вариативные, latin + cyrillic, без внешнего CDN)
+═══════════════════════════════════════════════════════ */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('fonts/inter-400-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('fonts/inter-400-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('fonts/manrope-400-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('fonts/manrope-400-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+/* ═══════════════════════════════════════════════════════
    DESIGN TOKENS
 ═══════════════════════════════════════════════════════ */
 :root {
@@ -14,14 +50,14 @@
   --n-800: oklch(18% 0.008 240);
   --n-900: oklch(13% 0.005 240);
 
-  /* Accent — warm amber */
+  /* Accent — warm amber (значения подобраны для контраста WCAG AA >= 4.5:1) */
   --a-50:  oklch(97% 0.025 75);
   --a-100: oklch(93% 0.055 75);
   --a-200: oklch(86% 0.100 75);
   --a-300: oklch(78% 0.140 75);
   --a-400: oklch(70% 0.170 72);
-  --a-500: oklch(62% 0.175 68);
-  --a-600: oklch(52% 0.155 65);
+  --a-500: oklch(54% 0.175 68);
+  --a-600: oklch(48% 0.155 65);
 
   /* Semantic roles — light theme */
   --bg:            var(--n-50);
@@ -105,6 +141,8 @@
     --accent-hover:  oklch(78% 0.175 72);
     --accent-bg:     oklch(20% 0.030 72);
     --accent-text:   oklch(78% 0.175 72);
+    --accent-btn:    oklch(54% 0.170 72);
+    --accent-btn-hover: oklch(58% 0.170 72);
     --shadow-sm: 0 1px 3px oklch(0% 0 0 / 0.30);
     --shadow-md: 0 4px 12px oklch(0% 0 0 / 0.35);
     --shadow-lg: 0 10px 30px oklch(0% 0 0 / 0.40);
@@ -124,6 +162,8 @@
   --accent-hover:  oklch(78% 0.175 72);
   --accent-bg:     oklch(20% 0.030 72);
   --accent-text:   oklch(78% 0.175 72);
+  --accent-btn:    oklch(54% 0.170 72);
+  --accent-btn-hover: oklch(58% 0.170 72);
   --shadow-sm: 0 1px 3px oklch(0% 0 0 / 0.30);
   --shadow-md: 0 4px 12px oklch(0% 0 0 / 0.35);
   --shadow-lg: 0 10px 30px oklch(0% 0 0 / 0.40);
@@ -142,6 +182,8 @@
   --accent-hover:  var(--a-600);
   --accent-bg:     var(--a-50);
   --accent-text:   var(--a-600);
+  --accent-btn:    var(--a-500);
+  --accent-btn-hover: var(--a-600);
   --shadow-sm: 0 1px 3px oklch(13% 0.005 240 / 0.08), 0 1px 2px oklch(13% 0.005 240 / 0.05);
   --shadow-md: 0 4px 12px oklch(13% 0.005 240 / 0.10), 0 1px 3px oklch(13% 0.005 240 / 0.07);
   --shadow-lg: 0 10px 30px oklch(13% 0.005 240 / 0.12), 0 2px 6px oklch(13% 0.005 240 / 0.06);
@@ -222,11 +264,11 @@ ul, ol { list-style: none; }
 }
 
 .btn--primary {
-  background: var(--accent);
+  background: var(--accent-btn);
   color: white;
 }
 .btn--primary:hover {
-  background: var(--accent-hover);
+  background: var(--accent-btn-hover);
   box-shadow: var(--shadow-sm);
   transform: translateY(-1px);
 }
@@ -244,6 +286,18 @@ ul, ol { list-style: none; }
 }
 
 .btn--full { width: 100%; }
+
+.btn--sm {
+  padding: var(--sp-2) var(--sp-4);
+  font-size: var(--text-xs);
+  min-height: 36px;
+}
+
+.case__cta {
+  margin-top: var(--sp-5);
+  padding-top: var(--sp-5);
+  border-top: 1px dashed var(--border);
+}
 
 /* ═══════════════════════════════════════════════════════
    TAGS
@@ -354,11 +408,11 @@ ul, ol { list-style: none; }
 }
 
 .nav__cta {
-  background: var(--accent) !important;
+  background: var(--accent-btn) !important;
   color: white !important;
   padding: var(--sp-2) var(--sp-4) !important;
 }
-.nav__cta:hover { background: var(--accent-hover) !important; }
+.nav__cta:hover { background: var(--accent-btn-hover) !important; }
 
 .nav__burger {
   display: none;
@@ -632,6 +686,32 @@ ul, ol { list-style: none; }
 .portfolio { background: var(--bg); }
 
 .cases { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-6); }
+
+.portfolio__cta {
+  margin-top: var(--sp-10);
+  padding: var(--sp-8);
+  background: var(--accent-bg);
+  border: 1px solid oklch(from var(--accent) l c h / 0.2);
+  border-radius: var(--r-xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-6);
+  flex-wrap: wrap;
+}
+
+.portfolio__cta p {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+  flex: 1 1 320px;
+}
+
+@media (max-width: 640px) {
+  .portfolio__cta { flex-direction: column; align-items: stretch; text-align: center; }
+  .portfolio__cta .btn { width: 100%; }
+}
 
 @media (max-width: 900px) { .cases { grid-template-columns: 1fr; } }
 
@@ -1316,6 +1396,81 @@ a.contact-item:hover { background: var(--bg-subtle); }
 /* ═══════════════════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════
+   FAQ
+═══════════════════════════════════════════════════════ */
+.faq-list {
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  margin-top: var(--sp-8);
+}
+
+.faq-item {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+}
+
+.faq-item[open] {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+.faq-item summary {
+  padding: var(--sp-5) var(--sp-6);
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  user-select: none;
+  transition: color var(--t-fast);
+}
+
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::after {
+  content: '+';
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--accent);
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--r-full);
+  transition: transform var(--t-fast), background var(--t-fast);
+}
+
+.faq-item[open] summary::after {
+  content: '−';
+  background: var(--accent-bg);
+}
+
+.faq-item summary:hover { color: var(--accent); }
+.faq-item summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+.faq-item__body {
+  padding: 0 var(--sp-6) var(--sp-6);
+}
+
+.faq-item__body p {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+}
+
 .footer {
   border-top: 1px solid var(--border);
   padding-block: var(--sp-8);
@@ -1347,14 +1502,35 @@ a.contact-item:hover { background: var(--bg-subtle); }
 }
 
 /* ═══════════════════════════════════════════════════════
+   SKIP LINK (доступность для клавиатуры/скринридеров)
+═══════════════════════════════════════════════════════ */
+.skip-link {
+  position: absolute;
+  top: -60px;
+  left: var(--sp-4);
+  z-index: 100;
+  background: var(--accent-btn);
+  color: white;
+  padding: var(--sp-3) var(--sp-5);
+  border-radius: var(--r-md);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  transition: top var(--t-fast);
+}
+
+.skip-link:focus {
+  top: var(--sp-4);
+}
+
+/* ═══════════════════════════════════════════════════════
    THEME TOGGLE BUTTON
 ═══════════════════════════════════════════════════════ */
 .theme-toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: var(--r-full);
   border: 1.5px solid var(--border-strong);
   background: var(--bg-subtle);
@@ -1391,7 +1567,7 @@ a.contact-item:hover { background: var(--bg-subtle); }
   width: 48px;
   height: 48px;
   border-radius: var(--r-full);
-  background: var(--accent);
+  background: var(--accent-btn);
   color: white;
   display: flex;
   align-items: center;
@@ -1410,7 +1586,7 @@ a.contact-item:hover { background: var(--bg-subtle); }
   transform: translateY(0);
 }
 
-.scroll-top:hover { background: var(--accent-hover); }
+.scroll-top:hover { background: var(--accent-btn-hover); }
 
 .scroll-top:focus-visible {
   outline: 2px solid var(--accent);
@@ -1425,5 +1601,91 @@ a.contact-item:hover { background: var(--bg-subtle); }
     right: var(--sp-4);
     width: 44px;
     height: 44px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   PRINT STYLESHEET
+═══════════════════════════════════════════════════════ */
+@media print {
+  /* Убираем интерактивные и навигационные элементы, не нужные на бумаге */
+  .nav,
+  .theme-toggle,
+  .nav__burger,
+  .nav__mobile,
+  .scroll-top,
+  .skip-link,
+  .hero__scroll,
+  .video-section,
+  .contact__form,
+  .form-success,
+  .btn,
+  .case__details summary::after {
+    display: none !important;
+  }
+
+  /* Раскрываем все детали (кейсы, FAQ) — на бумаге не может быть скрытого контента */
+  .case__details,
+  .faq-item {
+    display: block !important;
+  }
+  .case__details-body,
+  .faq-item__body {
+    display: block !important;
+    max-height: none !important;
+  }
+
+  * {
+    color: #000 !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  body {
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+
+  a {
+    color: #000 !important;
+    text-decoration: underline !important;
+  }
+
+  /* Показываем реальный URL рядом со ссылками, кроме внутренних якорей */
+  a[href^="http"]:not([href*="maksimlubnin.ru"])::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    font-weight: 400;
+  }
+
+  .section {
+    padding-block: var(--sp-8);
+    page-break-inside: avoid;
+  }
+
+  .case,
+  .faq-item,
+  .stat-card,
+  .skill-card {
+    border: 1px solid #999 !important;
+    page-break-inside: avoid;
+  }
+
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+
+  .container {
+    max-width: 100%;
+    padding-inline: 0;
+  }
+
+  .cases {
+    grid-template-columns: 1fr !important;
+  }
+
+  .footer {
+    border-top: 1px solid #999;
   }
 }
