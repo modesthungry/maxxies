@@ -188,12 +188,7 @@
       });
       if (!valid) return;
 
-      // Check if Formspree ID is still a placeholder
       const action = form.getAttribute('action') || '';
-      if (action.includes('ВАША_ФОРМА_ID')) {
-        alert('Форма не настроена. Зарегистрируйтесь на formspree.io и замените ВАША_ФОРМА_ID в HTML-файле.');
-        return;
-      }
 
       // Show loading state
       submitBtn.disabled = true;
@@ -226,6 +221,53 @@
         if (btnText) btnText.hidden = false;
         if (btnLoading) btnLoading.hidden = true;
       }
+    });
+  }
+
+  /* ─────────────────────────────────────────
+     SCROLL-TO-TOP button
+  ───────────────────────────────────────── */
+  const scrollTopBtn = document.getElementById('scroll-top');
+  if (scrollTopBtn) {
+    window.addEventListener('scroll', () => {
+      scrollTopBtn.classList.toggle('visible', window.scrollY > 500);
+    }, { passive: true });
+
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  /* ─────────────────────────────────────────
+     THEME TOGGLE (light / dark, saved in localStorage)
+  ───────────────────────────────────────── */
+  const themeToggle = document.getElementById('theme-toggle');
+  const THEME_KEY = 'ml-theme';
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    if (themeToggle) {
+      themeToggle.setAttribute('aria-pressed', String(theme === 'dark'));
+    }
+  }
+
+  function initTheme() {
+    const saved = localStorage.getItem(THEME_KEY);
+    if (saved) {
+      applyTheme(saved);
+    } else {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      applyTheme(prefersDark ? 'dark' : 'light');
+    }
+  }
+
+  if (themeToggle) {
+    initTheme();
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+      localStorage.setItem(THEME_KEY, next);
     });
   }
 

@@ -84,9 +84,15 @@
   --nav-h: 64px;
 }
 
-/* Dark theme */
+/* Dark theme — управляется через атрибут data-theme (JS переключатель),
+   с fallback на системные настройки, если атрибут ещё не выставлен */
+:root[data-theme="dark"],
+:root:not([data-theme]):is(html) {
+  /* placeholder, переопределяется ниже */
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg:            oklch(12% 0.006 240);
     --bg-raised:     oklch(16% 0.007 240);
     --bg-subtle:     oklch(19% 0.007 240);
@@ -104,6 +110,44 @@
     --shadow-lg: 0 10px 30px oklch(0% 0 0 / 0.40);
   }
 }
+
+:root[data-theme="dark"] {
+  --bg:            oklch(12% 0.006 240);
+  --bg-raised:     oklch(16% 0.007 240);
+  --bg-subtle:     oklch(19% 0.007 240);
+  --border:        oklch(24% 0.008 240);
+  --border-strong: oklch(32% 0.009 240);
+  --text:          oklch(96% 0.005 240);
+  --text-muted:    oklch(65% 0.010 240);
+  --text-faint:    oklch(48% 0.010 240);
+  --accent:        oklch(72% 0.170 72);
+  --accent-hover:  oklch(78% 0.175 72);
+  --accent-bg:     oklch(20% 0.030 72);
+  --accent-text:   oklch(78% 0.175 72);
+  --shadow-sm: 0 1px 3px oklch(0% 0 0 / 0.30);
+  --shadow-md: 0 4px 12px oklch(0% 0 0 / 0.35);
+  --shadow-lg: 0 10px 30px oklch(0% 0 0 / 0.40);
+}
+
+:root[data-theme="light"] {
+  --bg:            var(--n-50);
+  --bg-raised:     #ffffff;
+  --bg-subtle:     var(--n-100);
+  --border:        var(--n-200);
+  --border-strong: var(--n-300);
+  --text:          var(--n-900);
+  --text-muted:    var(--n-500);
+  --text-faint:    var(--n-400);
+  --accent:        var(--a-500);
+  --accent-hover:  var(--a-600);
+  --accent-bg:     var(--a-50);
+  --accent-text:   var(--a-600);
+  --shadow-sm: 0 1px 3px oklch(13% 0.005 240 / 0.08), 0 1px 2px oklch(13% 0.005 240 / 0.05);
+  --shadow-md: 0 4px 12px oklch(13% 0.005 240 / 0.10), 0 1px 3px oklch(13% 0.005 240 / 0.07);
+  --shadow-lg: 0 10px 30px oklch(13% 0.005 240 / 0.12), 0 2px 6px oklch(13% 0.005 240 / 0.06);
+}
+
+body { transition: background var(--t-base), color var(--t-base); }
 
 /* ═══════════════════════════════════════════════════════
    RESET & BASE
@@ -1300,4 +1344,86 @@ a.contact-item:hover { background: var(--bg-subtle); }
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════════════════
+   THEME TOGGLE BUTTON
+═══════════════════════════════════════════════════════ */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-full);
+  border: 1.5px solid var(--border-strong);
+  background: var(--bg-subtle);
+  color: var(--text);
+  transition: background var(--t-fast), border-color var(--t-fast), transform var(--t-fast);
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.theme-toggle svg { width: 20px; height: 20px; }
+
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+
+/* ═══════════════════════════════════════════════════════
+   SCROLL-TO-TOP BUTTON
+═══════════════════════════════════════════════════════ */
+.scroll-top {
+  position: fixed;
+  bottom: var(--sp-6);
+  right: var(--sp-6);
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-full);
+  background: var(--accent);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: opacity var(--t-base), transform var(--t-base), background var(--t-fast);
+  z-index: 40;
+}
+
+.scroll-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.scroll-top:hover { background: var(--accent-hover); }
+
+.scroll-top:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.scroll-top svg { width: 22px; height: 22px; }
+
+@media (max-width: 640px) {
+  .scroll-top {
+    bottom: var(--sp-4);
+    right: var(--sp-4);
+    width: 44px;
+    height: 44px;
+  }
 }

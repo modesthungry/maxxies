@@ -5,6 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Максим Лубнин — Operations & Business Analysis. Портфолио: внедрение, процессы, KPI, запуск заведений." />
   <title>Максим Лубнин · BA & Operations</title>
+
+  <!-- Open Graph / соцсети -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Максим Лубнин · Business Analysis & Operations" />
+  <meta property="og:description" content="Операционный лидер: внедрение процессов, KPI, запуск заведений с нуля. Портфолио и кейсы." />
+  <meta property="og:url" content="https://maksimlubnin.ru" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:image" content="https://maksimlubnin.ru/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter Card (некоторые мессенджеры используют этот стандарт как fallback) -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Максим Лубнин · Business Analysis & Operations" />
+  <meta name="twitter:description" content="Операционный лидер: внедрение процессов, KPI, запуск заведений с нуля." />
+  <meta name="twitter:image" content="https://maksimlubnin.ru/og-image.jpg" />
+
+  <link rel="canonical" href="https://maksimlubnin.ru" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="alternate icon" href="favicon.ico" />
+
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,6 +50,10 @@
           <li><a href="#contact" class="nav__cta">Связаться</a></li>
         </ul>
       </nav>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Переключить тему" aria-pressed="false">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
       <button class="nav__burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
       </button>
@@ -516,6 +543,26 @@
     </div>
   </footer>
 
+  <!-- Кнопка "наверх" -->
+  <button class="scroll-top" id="scroll-top" aria-label="Наверх страницы">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
   <script src="script.js"></script>
+
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+      (function(m,e,t,r,i,k,a){
+          m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+          m[i].l=1*new Date();
+          for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+          k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+      })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=111934366', 'ym');
+
+      ym(111934366, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/111934366" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
+
 </body>
 </html>
